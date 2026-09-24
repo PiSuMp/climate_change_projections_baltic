@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Öresund Trophic Levels -- Habitat Suitability Results</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Öresund Trophic Levels -- Habitat Suitability Results</h1>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab-btn disabled" data-tab="trends" disabled>Role Trends (1993-2025/2099)</button>
+    <button class="tab-btn active" data-tab="animation">Monthly Suitability Animation</button>
+    <button class="tab-btn disabled" data-tab="seasonal" disabled>Annual Seasonal Cycle</button>
+  </nav>
+
+  <main>
+    <section id="tab-trends" class="tab-panel">
+      <p>Coming back soon.</p>
+    </section>
+
+    <section id="tab-animation" class="tab-panel active">
+      <label for="anim-species">Species:</label>
+      <select id="anim-species"></select>
+      <span id="anim-badge" class="role-badge"></span>
+      <p class="caption">Monthly suitability, 1994 vs 2004 vs 2014 vs 2024.</p>
+      <img id="anim-gif" class="result-img" alt="Monthly suitability animation">
+    </section>
+
+    <section id="tab-seasonal" class="tab-panel">
+      <p>Coming back soon.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>SLU postdoc project -- envelope habitat suitability model, Copernicus Marine reanalysis.</p>
+  </footer>
+
+  <script src="data/species.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
