@@ -45,17 +45,30 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // ---- animation tab ----
+  // ---- animation tab (gif + seasonal-cycle plot side by side) ----
   const animSelect = document.getElementById("anim-species");
   const animBadge = document.getElementById("anim-badge");
   const animGif = document.getElementById("anim-gif");
+  const seasonalImg = document.getElementById("anim-seasonal");
+  const seasonalMissing = document.getElementById("anim-seasonal-missing");
   buildGroupedSelect(animSelect, window.SPECIES_DATA);
 
   function updateAnim() {
     const prefix = animSelect.value;
+    const sp = window.SPECIES_DATA.find(s => s.prefix === prefix);
     animGif.src = `assets/animations/${prefix}.gif`;
     animGif.alt = `Monthly suitability animation for ${prefix}`;
     setBadge(animBadge, prefix, window.SPECIES_DATA);
+
+    if (sp && sp.season) {
+      seasonalImg.src = `assets/seasonal/${prefix}_seasonal_periodavg.png`;
+      seasonalImg.alt = `Seasonal cycle for ${prefix}`;
+      seasonalImg.style.display = "";
+      seasonalMissing.style.display = "none";
+    } else {
+      seasonalImg.style.display = "none";
+      seasonalMissing.style.display = "";
+    }
   }
   animSelect.addEventListener("change", updateAnim);
   if (animSelect.options.length > 0) updateAnim();

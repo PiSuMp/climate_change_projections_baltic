@@ -52,6 +52,14 @@ nav.tabs {
 }
 
 .tab-panel { display: none; max-width: 1800px; margin: 0 auto 40px; }
+
+.side-by-side {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+.side-col { flex: 1 1 480px; min-width: 0; }
 .tab-panel.active { display: block; }
 
 select {

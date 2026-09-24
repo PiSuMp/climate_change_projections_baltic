@@ -26,8 +26,18 @@
       <label for="anim-species">Species:</label>
       <select id="anim-species"></select>
       <span id="anim-badge" class="role-badge"></span>
-      <p class="caption">Monthly suitability, 1994 vs 2004 vs 2014 vs 2024.</p>
-      <img id="anim-gif" class="result-img" alt="Monthly suitability animation">
+
+      <div class="side-by-side">
+        <div class="side-col">
+          <p class="caption">Monthly suitability, 1994 vs 2004 vs 2014 vs 2024.</p>
+          <img id="anim-gif" class="result-img" alt="Monthly suitability animation">
+        </div>
+        <div class="side-col">
+          <p class="caption">Seasonal cycle, averaged over 4-year periods (1993-2025).</p>
+          <img id="anim-seasonal" class="result-img" alt="Seasonal cycle plot">
+          <p id="anim-seasonal-missing" class="caption" style="display:none;">Not available for this species yet.</p>
+        </div>
+      </div>
     </section>
 
     <section id="tab-seasonal" class="tab-panel">
