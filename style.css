@@ -61,7 +61,8 @@ nav.tabs {
 }
 .side-col { min-width: 0; }
 .side-col-main { flex: 3 1 480px; }
-.side-col-secondary { flex: 1 1 240px; }
+#anim-gif { max-height: 88vh; object-fit: contain; }
+.side-col-secondary { flex: 2 1 300px; }
 .tab-panel.active { display: block; }
 
 select {

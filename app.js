@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function updateAnim() {
     const prefix = animSelect.value;
     const sp = window.SPECIES_DATA.find(s => s.prefix === prefix);
-    animGif.src = `assets/animations/${prefix}.gif`;
+    animGif.src = `assets/animations/${prefix}.gif?v=3`;
     animGif.alt = `Monthly suitability animation for ${prefix}`;
     setBadge(animBadge, prefix, window.SPECIES_DATA);
 
