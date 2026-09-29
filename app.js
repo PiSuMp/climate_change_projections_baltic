@@ -72,4 +72,32 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   animSelect.addEventListener("change", updateAnim);
   if (animSelect.options.length > 0) updateAnim();
+
+  // ---- future projections tab (delta method: animation + seasonal cycle, stacked) ----
+  const futSelect = document.getElementById("future-species");
+  const futBadge = document.getElementById("future-badge");
+  const futGif = document.getElementById("future-gif");
+  const futSeasonal = document.getElementById("future-seasonal");
+  const futMissing = document.getElementById("future-missing");
+  const futureSpecies = window.SPECIES_DATA.filter(s => s.future);
+  buildGroupedSelect(futSelect, futureSpecies);
+
+  function updateFuture() {
+    const prefix = futSelect.value;
+    const sp = futureSpecies.find(s => s.prefix === prefix);
+    setBadge(futBadge, prefix, futureSpecies);
+    if (sp) {
+      futGif.src = `assets/future_animations/${prefix}.gif?v=1`;
+      futGif.alt = `Future monthly suitability animation for ${sp.common}`;
+      futSeasonal.src = `assets/future_seasonal/${prefix}.png?v=1`;
+      futSeasonal.alt = `Future seasonal cycle for ${sp.common}`;
+      futGif.style.display = futSeasonal.style.display = "";
+      futMissing.style.display = "none";
+    } else {
+      futGif.style.display = futSeasonal.style.display = "none";
+      futMissing.style.display = "";
+    }
+  }
+  futSelect.addEventListener("change", updateFuture);
+  if (futSelect.options.length > 0) updateFuture();
 });
