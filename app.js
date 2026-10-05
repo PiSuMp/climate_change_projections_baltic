@@ -3,10 +3,11 @@
 // plain static page -- no server needed, since none of this involves live
 // computation, just swapping which pre-rendered image is shown.
 
-const ROLE_ORDER = ["Top_Predator", "Mesopredator", "Forage_Prey", "Diadromous", "Freshwater_Stray", "Invasive_Species"];
+const ROLE_ORDER = ["Large_Predator", "Mesopredator", "Forage_Prey", "Diadromous", "Freshwater_Stray", "Invasive_Species"];
 
+const ROLE_LABELS = { Large_Predator: "Large Predators", Forage_Prey: "Forage/Prey" };
 function roleLabel(role) {
-  return role.replace(/_/g, " ");
+  return ROLE_LABELS[role] || role.replace(/_/g, " ");
 }
 
 function buildGroupedSelect(selectEl, speciesList) {

@@ -91,7 +91,7 @@ select {
   font-size: 0.85em;
 }
 
-.role-badge.Top_Predator { background-color: var(--top-predator); }
+.role-badge.Large_Predator { background-color: var(--top-predator); }
 .role-badge.Mesopredator { background-color: var(--mesopredator); }
 .role-badge.Forage_Prey { background-color: var(--forage-prey); }
 .role-badge.Diadromous { background-color: var(--diadromous); }
