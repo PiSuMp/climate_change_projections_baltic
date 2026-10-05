@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Swedish West Coast Trophic Levels -- Habitat Suitability Results</title>
+<link rel="stylesheet" href="style.css?v=4">
+</head>
+<body>
+  <header>
+    <h1>Swedish West Coast Trophic Levels -- Habitat Suitability Results</h1>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab-btn" data-tab="trends">Role Trends by Season (1994-2099)</button>
+    <button class="tab-btn active" data-tab="animation">Monthly Suitability Animation</button>
+    <button class="tab-btn" data-tab="future">Future Projections (2026-2099)</button>
+    <button class="tab-btn disabled" data-tab="seasonal" disabled>Annual Seasonal Cycle</button>
+  </nav>
+
+  <main>
+    <section id="tab-trends" class="tab-panel">
+      <div class="info-box">
+        <p><strong>Winter gains, summer losses.</strong> Averaged over the whole year, habitat suitability rises slightly
+        for most trophic roles until 2099. Split by season, the picture is different: in <strong>winter</strong>
+        (December-March) every role gains, because warmer winters lift conditions above the species' cold limits;
+        in <strong>summer</strong> (June-September) almost every species loses (under SSP5-8.5, 66 of 71 species by 2080-2099).
+        The whole-year increase is therefore winter gains outweighing summer losses, not an overall improvement.</p>
+        <p>Observed Copernicus reanalysis until 2025, then delta-method projections (see the Future Projections tab)
+        under SSP2-4.5 and SSP5-8.5. Thin lines = single years, bold = 10-year rolling mean.</p>
+      </div>
+      <p class="caption">Role-average mean suitability by season.</p>
+      <img class="result-img" src="assets/summary/role_season_timeseries.png?v=2" alt="Role-average suitability by season, 1994-2099">
+      <p class="caption">Case-study species (Atlantic cod, goldsinny wrasse, blue crab): mean suitability by season.
+      % change from the observed 1994-2003 baseline (own y-axis per season). Cod loses mainly in summer, while its winter is already near optimal; goldsinny and blue crab gain mainly in winter.</p>
+      <img class="result-img" src="assets/summary/case_study_season_timeseries.png?v=3" alt="Case-study species suitability by season, 1994-2099">
+      <p class="caption">Per species: change in winter (x) versus summer (y) suitability, observed 1994-2022 to 2080-2099.
+      Most species sit in the lower right: they gain in winter but lose in summer.</p>
+      <div class="side-by-side">
+        <div class="side-col side-col-half">
+          <img class="result-img" src="assets/summary/winter_vs_summer_change_SSP245.png?v=2" alt="Winter vs summer change, SSP2-4.5">
+        </div>
+        <div class="side-col side-col-half">
+          <img class="result-img" src="assets/summary/winter_vs_summer_change_SSP585.png?v=2" alt="Winter vs summer change, SSP5-8.5">
+        </div>
+      </div>
+    </section>
+
+    <section id="tab-animation" class="tab-panel active">
+      <label for="anim-species">Species:</label>
+      <select id="anim-species"></select>
+      <span id="anim-badge" class="role-badge"></span>
+
+      <div class="side-by-side">
+        <div class="side-col side-col-main">
+          <p class="caption">Monthly suitability, averaged over 4-year periods (1993-2025).</p>
+          <img id="anim-gif" class="result-img" alt="Monthly suitability animation">
+        </div>
+        <div class="side-col side-col-secondary">
+          <p class="caption">Seasonal cycle, averaged over 4-year periods (1993-2025).</p>
+          <img id="anim-seasonal" class="result-img" alt="Seasonal cycle plot">
+          <p id="anim-seasonal-missing" class="caption" style="display:none;">Not available for this species yet.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="tab-future" class="tab-panel">
+      <div class="info-box">
+        <p><strong>How the projections are made (delta method).</strong> The climate-model ensemble (FutureMares, CMIP6,
+        ~9 km) is only used for how much temperature, salinity and oxygen <em>change</em> from today to each future year.
+        That change is added to the real, high-resolution Copernicus ocean data (~2 km, 39 depth levels), re-using real
+        years so that natural year-to-year variability is kept. Scenarios: SSP2-4.5 (intermediate) and SSP5-8.5 (high emissions).</p>
+        <p>Animation: one frame per month; columns = observed 2014-2024 and four future periods, rows = scenario.
+        Seasonal cycle: dashed = observed periods, solid = future decades.</p>
+      </div>
+      <label for="future-species">Species:</label>
+      <select id="future-species"></select>
+      <span id="future-badge" class="role-badge"></span>
+      <p class="caption">Monthly suitability, observed 2014-2024 vs projected periods (2026-2099), both scenarios.</p>
+      <img id="future-gif" class="result-img future-img" alt="Future monthly suitability animation">
+      <p class="caption">Seasonal cycle: domain-mean suitability by month, observed periods and projected decades.</p>
+      <img id="future-seasonal" class="result-img future-img" alt="Future seasonal cycle plot">
+      <p id="future-missing" class="caption" style="display:none;">Not available for this species yet.</p>
+    </section>
+
+    <section id="tab-seasonal" class="tab-panel">
+      <p>Coming back soon.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>SLU postdoc project -- envelope habitat suitability model, Copernicus Marine reanalysis;
+    projections: delta method with the FutureMares CMIP6 ensemble (Kristiansen &amp; Butenschön 2024).</p>
+  </footer>
+
+  <script src="data/species.js?v=3"></script>
+  <script src="app.js?v=5"></script>
+</body>
+</html>
