@@ -1,7 +1,7 @@
 window.SPECIES_DATA = [
   { common: "Baltic (vendace-type) whitefish", role: "Mesopredator", prefix: "Baltic_vendace_type_whitefish", season: true, future: true },
   { common: "European eel", role: "Large_Predator", prefix: "European_eel", season: true, future: true },
-  { common: "Sea trout", role: "Mesopredator", prefix: "Sea_trout", season: true, future: true },
+  { common: "Sea trout", role: "Large_Predator", prefix: "Sea_trout", season: true, future: true },
   { common: "Atlantic herring", role: "Forage_Prey", prefix: "Atlantic_herring", season: true, future: true },
   { common: "Broadnosed pipefish", role: "Forage_Prey", prefix: "Broadnosed_pipefish", season: true, future: true },
   { common: "Brown shrimp", role: "Forage_Prey", prefix: "Brown_shrimp", season: true, future: true },
