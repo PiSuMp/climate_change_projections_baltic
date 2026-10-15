@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Swedish West Coast Trophic Levels -- Habitat Suitability Results</title>
+<link rel="stylesheet" href="style.css?v=6">
+</head>
+<body>
+  <header>
+    <h1>Swedish West Coast Trophic Levels -- Habitat Suitability Results</h1>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab-btn active" data-tab="future">Future Projections (2026-2099)</button>
+    <button class="tab-btn" data-tab="trends">Trophic Role Trends (1994-2099)</button>
+    <button class="tab-btn" data-tab="affinity">Biogeographic Affinity</button>
+    <button class="tab-btn" data-tab="methods">Methods: Envelope Model Curves</button>
+  </nav>
+
+  <main>
+    <section id="tab-future" class="tab-panel active">
+      <div class="info-box">
+        <p><strong>How the projections are made (delta method).</strong> The climate-model ensemble (FutureMares, CMIP6,
+        ~9 km) is only used for how much temperature, salinity and oxygen <em>change</em> from today to each future year.
+        That change is added to the real, high-resolution Copernicus ocean data (~2 km, 39 depth levels), re-using real
+        years so that natural year-to-year variability is kept. Scenarios: SSP2-4.5 (intermediate) and SSP5-8.5 (high emissions).
+        How each species' suitability is scored is explained in the <em>Methods</em> tab.</p>
+        <p>Animation: one frame per month; columns = observed 2014-2024 and four future periods, rows = scenario.
+        Seasonal cycle: dashed = observed periods, solid = future decades.</p>
+      </div>
+      <label for="future-species">Species:</label>
+      <select id="future-species"></select>
+      <span id="future-badge" class="role-badge"></span>
+      <p class="caption">Monthly suitability, observed 2014-2024 vs projected periods (2026-2099), both scenarios.</p>
+      <img id="future-gif" class="result-img future-img" alt="Future monthly suitability animation">
+      <p class="caption">Seasonal cycle: domain-mean suitability by month, observed periods and projected decades.</p>
+      <img id="future-seasonal" class="result-img future-img" alt="Future seasonal cycle plot">
+      <p id="future-missing" class="caption" style="display:none;">Not available for this species yet.</p>
+    </section>
+
+    <section id="tab-trends" class="tab-panel">
+      <div class="info-box">
+        <p><strong>Winter gains, summer losses -- in both trophic roles.</strong> The 70 modelled species are grouped into
+        <strong>Large Predators</strong> (17 piscivorous fish: fish with trophic level &ge; 3.5 and &ge; 60 cm, plus sea trout)
+        and <strong>Mesopredators</strong> (53 species: all other fish and the predatory decapods).
+        By 2090-2099 under SSP5-8.5, mean <strong>winter</strong> (December-March) suitability rises by 69% in Large Predators
+        and by 137% in Mesopredators relative to 1994-2022, because warmer winters lift conditions above the species'
+        cold limits. Mean <strong>summer</strong> (June-September) suitability falls by 24% and 38%. By 2080-2099, 68 of the 70
+        species lose summer suitability and 67 gain in winter.</p>
+        <p>The whole-year average therefore rises slightly (Large Predators +6%, Mesopredators +11%): winter gains outweigh
+        summer losses, which is not an overall improvement. The two roles follow the same pattern and do not differ
+        statistically (Kruskal-Wallis p = 0.41, SSP5-8.5); which species win or lose depends on their biogeographic
+        affinity (next tab).</p>
+      </div>
+
+      <p class="caption"><strong>1. Trophic roles over time.</strong> Change in mean habitat suitability per decade, relative to
+      1994-2022, by season. Mean of the species' log response ratios, back-transformed to %; bars = 95% CI across species.
+      Grey background = observed decades.</p>
+      <img class="result-img trends-img" src="assets/summary/role_decade_pctchange.png?v=7" alt="Decade % change in suitability per trophic role and season">
+
+      <p class="caption"><strong>2. Example species.</strong> One boreal (cold-water, top row) and one non-boreal species (bottom row)
+      per trophic group. Change in whole-year mean suitability relative to 1994-2022; thin = single years, bold = 10-year rolling mean;
+      labels = change by 2080-2099.</p>
+      <img class="result-img trends-img" src="assets/affinity/representative_species_panel.png?v=3" alt="Representative species per trophic role, boreal vs non-boreal">
+
+      <p class="caption"><strong>3. Every species: winter vs summer.</strong> Change in winter (y) versus summer (x) suitability, observed
+      1994-2022 to 2080-2099. Symbol size = individuals caught in the Swedish coastal survey 2000-2024. Almost all species sit in the
+      upper left: they gain in winter but lose in summer.</p>
+      <img class="result-img trends-img" src="assets/summary/winter_vs_summer_change_SSP585_by_catch.png?v=7" alt="Winter vs summer change per species, SSP5-8.5">
+      <img class="result-img trends-img" src="assets/summary/winter_vs_summer_change_SSP245_by_catch.png?v=7" alt="Winter vs summer change per species, SSP2-4.5">
+
+      <p class="caption"><strong>4. Every species: whole-year change.</strong> % change in whole-year mean suitability from 1994-2022,
+      per trophic role, for mid-century (2041-2060) and end of century (2080-2099).</p>
+      <img class="result-img heatmap-img" src="assets/summary/species_pctchange_heatmap.png?v=7" alt="Whole-year % change per species">
+    </section>
+
+    <section id="tab-affinity" class="tab-panel">
+      <div class="info-box">
+        <p><strong>Boreal species lose, non-boreal species gain, in both trophic roles.</strong> Each species was classified
+        from the literature, independently of the habitat model, as <strong>boreal</strong> (B, cold-water, 31 species),
+        <strong>non-boreal</strong> (NB, Lusitanian or wide Atlantic range, 37 species) or <strong>non-native</strong>
+        (NN: blue crab, round goby; shown but not tested). By 2080-2099 under SSP5-8.5, the catch-weighted median boreal species loses
+        13% of its whole-year habitat suitability, while the catch-weighted median non-boreal species gains 30% (unweighted medians:
+        -2% and +23%; Wilcoxon p &lt; 0.001). The same split appears within Large Predators (p = 0.001) and Mesopredators
+        (p &lt; 0.001, Holm-corrected), whereas the two trophic roles themselves do not differ (Kruskal-Wallis p = 0.41).
+        Exceptions: 12 boreal species gain (most clearly Norwegian topknot, longspined bullhead and pollack; ling, three-spined stickleback
+        and plaice stay at about 0%), and one non-boreal species loses (rock cook).</p>
+        <p>Affinity sources: Engelhard et al. 2011 (ICES J Mar Sci 68: 580-591; boreal / Lusitanian after Yang 1982) for 61 species;
+        Rogers &amp; Millner 1996 and Vaughan et al. 2026 where Engelhard has no entry; great spider crab after Zimina et al. 2015.
+        Shore crab, brown crab, European lobster and brown shrimp are classified from their geographic range (no published
+        classification exists for these decapods); Baltic whitefish by association with its boreal congener.</p>
+      </div>
+      <p class="caption">Change in whole-year mean suitability per species, observed 1994-2022 to 2080-2099 (SSP5-8.5), as log response ratio
+      (right axis: % change). A: all species; B: within each trophic role. Dot size = catch in the Swedish coastal survey (2000-2024)
+      relative to the most-caught species of the same trophic group; violin shape and median line are weighted by this catch.
+      Stars: *** p &lt; 0.001, ** p &lt; 0.01 (unweighted Wilcoxon tests).</p>
+      <img class="result-img affinity-img" src="assets/affinity/boreal_nonboreal_vs_change_SSP585_by_catch_violin_catchweighted.png?v=3" alt="Habitat change by biogeographic affinity, catch-weighted violins, SSP5-8.5">
+    </section>
+
+    <section id="tab-methods" class="tab-panel">
+      <div class="info-box">
+        <p><strong>What the envelope model does.</strong> Every species has a range of water conditions it can live in, taken
+        from AquaMaps / FishBase / SeaLifeBase: a <em>tolerated</em> range (minimum to maximum) and, inside it, a <em>preferred</em> range.
+        For every 2 km grid cell, every depth level and every month, the model turns the local temperature, salinity and oxygen
+        into a <strong>suitability score</strong> between 0 (unsuitable) and 1 (ideal), and checks whether the depth is within the
+        species' depth range. The curves below show how each variable is turned into a score, using Atlantic cod as the example.</p>
+      </div>
+
+      <img class="result-img methods-img" src="assets/methods/environmental_scoring_functions.png?v=1" alt="Scoring curves for temperature, salinity, oxygen and depth (Atlantic cod)">
+      <p class="caption">Solid black = curve used in the model. Dashed grey = simple AquaMaps trapezoid (straight lines), shown for
+      comparison. Light grey band = AquaMaps preferred range.</p>
+
+      <div class="methods-grid">
+        <div class="method-card">
+          <h3>A. Temperature: a thermal performance curve</h3>
+          <p>Inside the preferred range (<em>T</em><sub>pmin</sub> to <em>T</em><sub>pmax</sub>) the score is 1. On the
+          <strong>cold side</strong> it follows a smooth S-shape down to 0 at the minimum temperature <em>T</em><sub>min</sub>:
+          a little colder than preferred costs little, close to the limit the score drops quickly.
+          On the <strong>warm side</strong> the score stays high just above <em>T</em><sub>pmax</sub> and then falls ever faster,
+          reaching 0 at <em>T</em><sub>max</sub>. This is the typical shape of a fish's thermal performance curve:
+          a slow rise with warming, then a sharp collapse near the upper limit (Deutsch et al. 2008; Ern et al. 2023).</p>
+          <p class="formula"><em>s</em> = 3<em>f</em><sup>2</sup> &minus; 2<em>f</em><sup>3</sup>, <em>f</em> = (<em>T</em> &minus; <em>T</em><sub>min</sub>) / (<em>T</em><sub>pmin</sub> &minus; <em>T</em><sub>min</sub>) (cold side)<br>
+          <em>s</em> = 1 &minus; <em>g</em><sup>2</sup>, <em>g</em> = (<em>T</em> &minus; <em>T</em><sub>pmax</sub>) / (<em>T</em><sub>max</sub> &minus; <em>T</em><sub>pmax</sub>) (warm side)</p>
+        </div>
+        <div class="method-card">
+          <h3>B. Salinity: trapezoid</h3>
+          <p>1 inside the preferred range, falling in a straight line to 0 at the minimum and maximum salinity.
+          Salinity mainly decides <em>where</em> a species can live (for example how far into the brackish Baltic it reaches),
+          so the simple AquaMaps shape is kept.</p>
+        </div>
+        <div class="method-card">
+          <h3>C. Oxygen: % air saturation, lower limit only</h3>
+          <p>Bottom oxygen is expressed as % of the oxygen the water would hold in equilibrium with air at its own temperature and
+          salinity (Garcia &amp; Gordon 1992). Below <strong>20%</strong> (<em>O</em><sub>crit</sub>, the level at which fish can no longer
+          sustain their resting metabolism; Claireaux &amp; Chabot 2016) the score is 0. Above it the score rises quickly at first and
+          then levels off, reaching 1 at the species' preferred minimum (<em>O</em><sub>pref</sub>, converted to % saturation at
+          10 &deg;C / 30 psu, at most 100%). There is <strong>no upper limit</strong>: more oxygen never makes water less suitable.
+          Bottom oxygen is applied to the whole water column, which is conservative.</p>
+          <p class="formula"><em>s</em> = 1 &minus; (1 &minus; <em>f</em>)<sup>2</sup>, <em>f</em> = (<em>O</em> &minus; <em>O</em><sub>crit</sub>) / (<em>O</em><sub>pref</sub> &minus; <em>O</em><sub>crit</sub>)</p>
+        </div>
+        <div class="method-card">
+          <h3>D. Depth: in or out</h3>
+          <p>Depth is a yes/no filter: a depth level (and the seafloor of the cell) deeper than the species' maximum depth
+          <em>z</em><sub>max</sub> is excluded; everything shallower counts fully. There is no reason a fish should be
+          "half suitable" at 300 m if it is regularly found at 600 m.</p>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <p><strong>From four curves to one score.</strong> The temperature, salinity and oxygen scores are combined as their
+        <strong>geometric mean</strong>, then multiplied by the depth filter:
+        <span class="formula-inline"><em>S</em> = (<em>s</em><sub>T</sub> &middot; <em>s</em><sub>S</sub> &middot; <em>s</em><sub>O</sub>)<sup>1/3</sup> &times; depth (0 or 1)</span>.
+        A geometric mean means one poor condition pulls the score down strongly, and a 0 in any variable makes the place unsuitable.</p>
+        <p><strong>Where in the water column.</strong> Fish that move through the water column get the score of their best depth level in
+        each cell and month. Seafloor species (17 of the 70: crabs, lobster, brown shrimp, flatfish) are scored with the conditions at the
+        seafloor only. The maps show monthly scores; seasonal values are means over December-March (winter) and June-September (summer).</p>
+        <p><strong>What the model does not include.</strong> The ranges describe where species have been found (their realised niche), not
+        laboratory physiology. Food, seabed type, fishing and species interactions are not part of the score.</p>
+        <p class="refs">References: Claireaux G, Chabot D (2016) J Fish Biol 88: 232-251, doi:10.1111/jfb.12833 &middot;
+        Deutsch CA et al. (2008) PNAS 105: 6668-6672, doi:10.1073/pnas.0709472105 &middot;
+        Ern R et al. (2023) Physiology, doi:10.1152/physiol.00027.2022 &middot;
+        Garcia HE, Gordon LI (1992) Limnol Oceanogr 37: 1307-1312, doi:10.4319/lo.1992.37.6.1307.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>SLU postdoc project -- envelope habitat suitability model, Copernicus Marine reanalysis;
+    projections: delta method with the FutureMares CMIP6 ensemble (Kristiansen &amp; Butenschön 2024).
+    Results updated October 2026 (thermal-performance-curve temperature scoring, oxygen in % saturation).</p>
+  </footer>
+
+  <script src="data/species.js?v=6"></script>
+  <script src="app.js?v=8"></script>
+</body>
+</html>

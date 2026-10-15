@@ -1,0 +1,77 @@
+// Static gallery viewer for the Öresund Trophic Levels habitat suitability
+// results. Mirrors 05_Shiny_App/app.R (same role grouping/colors), but is a
+// plain static page -- no server needed, since none of this involves live
+// computation, just swapping which pre-rendered image is shown.
+
+const ROLE_ORDER = ["Large_Predator", "Mesopredator"];
+
+const ROLE_LABELS = { Large_Predator: "Large Predators", Mesopredator: "Mesopredators" };
+function roleLabel(role) {
+  return ROLE_LABELS[role] || role.replace(/_/g, " ");
+}
+
+function buildGroupedSelect(selectEl, speciesList) {
+  selectEl.innerHTML = "";
+  for (const role of ROLE_ORDER) {
+    const group = speciesList.filter(s => s.role === role);
+    if (group.length === 0) continue;
+    const optgroup = document.createElement("optgroup");
+    optgroup.label = roleLabel(role);
+    for (const sp of group) {
+      const opt = document.createElement("option");
+      opt.value = sp.prefix;
+      opt.textContent = sp.common;
+      optgroup.appendChild(opt);
+    }
+    selectEl.appendChild(optgroup);
+  }
+}
+
+function setBadge(badgeEl, prefix, speciesList) {
+  const sp = speciesList.find(s => s.prefix === prefix);
+  if (!sp) { badgeEl.textContent = ""; badgeEl.className = "role-badge"; return; }
+  badgeEl.textContent = roleLabel(sp.role);
+  badgeEl.className = "role-badge " + sp.role;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  // ---- tabs ----
+  document.querySelectorAll(".tab-btn").forEach(btn => {
+    if (btn.disabled) return;
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+      document.querySelectorAll(".tab-panel").forEach(p => p.classList.remove("active"));
+      btn.classList.add("active");
+      document.getElementById("tab-" + btn.dataset.tab).classList.add("active");
+    });
+  });
+
+  // ---- future projections tab (delta method: animation + seasonal cycle, stacked) ----
+  // (observed-only "Monthly Suitability Animation" and "Annual Seasonal Cycle" tabs removed 2026-10-15)
+  const futSelect = document.getElementById("future-species");
+  const futBadge = document.getElementById("future-badge");
+  const futGif = document.getElementById("future-gif");
+  const futSeasonal = document.getElementById("future-seasonal");
+  const futMissing = document.getElementById("future-missing");
+  const futureSpecies = window.SPECIES_DATA.filter(s => s.future);
+  buildGroupedSelect(futSelect, futureSpecies);
+
+  function updateFuture() {
+    const prefix = futSelect.value;
+    const sp = futureSpecies.find(s => s.prefix === prefix);
+    setBadge(futBadge, prefix, futureSpecies);
+    if (sp) {
+      futGif.src = `assets/future_animations/${prefix}.gif?v=3`;
+      futGif.alt = `Future monthly suitability animation for ${sp.common}`;
+      futSeasonal.src = `assets/future_seasonal/${prefix}.png?v=3`;
+      futSeasonal.alt = `Future seasonal cycle for ${sp.common}`;
+      futGif.style.display = futSeasonal.style.display = "";
+      futMissing.style.display = "none";
+    } else {
+      futGif.style.display = futSeasonal.style.display = "none";
+      futMissing.style.display = "";
+    }
+  }
+  futSelect.addEventListener("change", updateFuture);
+  if (futSelect.options.length > 0) updateFuture();
+});
