@@ -61,9 +61,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const sp = futureSpecies.find(s => s.prefix === prefix);
     setBadge(futBadge, prefix, futureSpecies);
     if (sp) {
-      futGif.src = `assets/future_animations/${prefix}.gif?v=3`;
+      futGif.src = `assets/future_animations/${prefix}.gif?v=4`;
       futGif.alt = `Future monthly suitability animation for ${sp.common}`;
-      futSeasonal.src = `assets/future_seasonal/${prefix}.png?v=3`;
+      futSeasonal.src = `assets/future_seasonal/${prefix}.png?v=4`;
       futSeasonal.alt = `Future seasonal cycle for ${sp.common}`;
       futGif.style.display = futSeasonal.style.display = "";
       futMissing.style.display = "none";
