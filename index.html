@@ -27,13 +27,13 @@
         That change is added to the real, high-resolution Copernicus ocean data (~2 km, all 56 depth levels down to the seafloor), re-using real
         years so that natural year-to-year variability is kept. Scenarios: SSP2-4.5 (intermediate) and SSP5-8.5 (high emissions).
         How each species' suitability is scored is explained in the <em>Methods</em> tab.</p>
-        <p>Animation: one frame per month; columns = observed 2014-2024 and four future periods, rows = scenario.
+        <p>Animation: one frame per month; columns = observed 1993-2022 and four future periods, rows = scenario.
         Seasonal cycle: dashed = observed periods, solid = future decades.</p>
       </div>
       <label for="future-species">Species:</label>
       <select id="future-species"></select>
       <span id="future-badge" class="role-badge"></span>
-      <p class="caption">Monthly suitability, observed 2014-2024 vs projected periods (2026-2099), both scenarios.</p>
+      <p class="caption">Monthly suitability, observed 1993-2022 vs projected periods (2026-2099), both scenarios.</p>
       <img id="future-gif" class="result-img future-img" alt="Future monthly suitability animation">
       <p class="caption">Seasonal cycle: domain-mean suitability by month, observed periods and projected decades.</p>
       <img id="future-seasonal" class="result-img future-img" alt="Future seasonal cycle plot">
@@ -60,7 +60,7 @@
       <p class="caption"><strong>1. Trophic roles over time.</strong> Change in mean habitat suitability per decade, relative to
       1993-2022, by season. Catch-weighted group means (species weighted by their catch in the Swedish coastal survey);
       bands = 90% bootstrap interval (species resampled within each group). Grey background = observed decades.</p>
-      <img class="result-img trends-img" src="assets/summary/role_decade_pctchange_catch_ribbon_ci90.png?v=2" alt="Decade % change in suitability per trophic role and season">
+      <img class="result-img trends-img" src="assets/summary/role_decade_pctchange_catch_ribbon_ci90.png?v=3" alt="Decade % change in suitability per trophic role and season">
 
       <p class="caption"><strong>2. Example species.</strong> One boreal (cold-water, top row) and one non-boreal species (bottom row)
       per trophic group. Change in whole-year mean suitability relative to 1993-2022; thin = single years, bold = 10-year rolling mean;
@@ -73,7 +73,7 @@
       Swedish coastal survey (2000-2024) relative to the most-caught species of the same trophic group; the most-caught species are named.
       Most species sit in the upper left: they gain in winter but lose in summer. Below the dotted line the summer loss is larger
       than the winter gain.</p>
-      <img class="result-img trends-img" src="assets/summary/winter_vs_summer_by_catch_4panel.png?v=2" alt="Winter vs summer change per species, both scenarios, 2040-2069 and 2070-2099">
+      <img class="result-img trends-img" src="assets/summary/winter_vs_summer_by_catch_4panel.png?v=3" alt="Winter vs summer change per species, both scenarios, 2040-2069 and 2070-2099">
 
       <p class="caption"><strong>4. Every species: whole-year change.</strong> % change in whole-year mean suitability from 1993-2022,
       per trophic role, for mid-century (2040-2069) and end of century (2070-2099).</p>
@@ -100,7 +100,7 @@
       (right axis: % change). A: all species; B: within each trophic role. Dot size = catch in the Swedish coastal survey (2000-2024)
       relative to the most-caught species of the same trophic group; violin shape and median line are weighted by this catch.
       Stars: ** p &lt; 0.01, ns = not significant (catch-weighted permutation tests of the median lines, 10,000 permutations; Holm within roles).</p>
-      <img class="result-img affinity-img" src="assets/affinity/boreal_nonboreal_vs_change_SSP585_by_catch_violin_catchweighted.png?v=5" alt="Habitat change by biogeographic affinity, catch-weighted violins, SSP5-8.5">
+      <img class="result-img affinity-img" src="assets/affinity/boreal_nonboreal_vs_change_SSP585_by_catch_violin_catchweighted.png?v=6" alt="Habitat change by biogeographic affinity, catch-weighted violins, SSP5-8.5">
     </section>
 
     <section id="tab-alltrends" class="tab-panel">
@@ -200,6 +200,6 @@
   </footer>
 
   <script src="data/species.js?v=6"></script>
-  <script src="app.js?v=9"></script>
+  <script src="app.js?v=10"></script>
 </body>
 </html>
