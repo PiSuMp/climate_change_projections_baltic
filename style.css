@@ -143,3 +143,6 @@ footer {
   border-top: 1px solid #eee;
   margin-top: 20px;
 }
+
+/* version stamp (2026-11-27) */
+footer .version-stamp { margin-top: 0.4em; font-size: 0.85em; opacity: 0.8; }

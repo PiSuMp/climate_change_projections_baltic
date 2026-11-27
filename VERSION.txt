@@ -1,0 +1,5 @@
+Website version 1.0 (manuscript submission)
+Snapshot: 2026-11-27
+Model run: 2026-11-24
+Archived (with replication package): https://doi.org/10.5281/zenodo.24588769
+Live site: https://pisump.github.io/climate_change_projections_baltic/
